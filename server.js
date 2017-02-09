@@ -12,4 +12,6 @@ function runServer() {
 	console.log(`The server is now listening on ${PORT}`)
 }
 
+runServer()
+
 module.exports = {app}
