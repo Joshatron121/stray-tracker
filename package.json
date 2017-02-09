@@ -1,0 +1,46 @@
+{
+  "name": "stray-tracker",
+  "version": "0.0.1",
+  "description": "Stray Tracker app for missing animals.",
+  "main": "server.js",
+  "scripts": {
+    "test": "mocha ./test",
+    "start": "node server.js",
+    "startmon": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Joshatron121/stray-tracker.git"
+  },
+  "keywords": [
+    "Animals",
+    "Dogs",
+    "Cats",
+    "Missing",
+    "Stray",
+    "Finder",
+    "Tracker",
+    "Pet"
+  ],
+  "author": "Josh Eimer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Joshatron121/stray-tracker/issues"
+  },
+  "homepage": "https://github.com/Joshatron121/stray-tracker#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.16.0",
+    "express": "^4.14.1",
+    "faker": "^3.1.0",
+    "mongoose": "^4.8.1",
+    "morgan": "^1.8.0",
+    "passport": "^0.3.2",
+    "winston": "^2.3.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^3.0.0",
+    "mocha": "^3.2.0"
+  }
+}
