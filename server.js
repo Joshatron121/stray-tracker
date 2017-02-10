@@ -1,3 +1,5 @@
+
+
 const express = require('express')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
@@ -10,12 +12,16 @@ const {DATABASE_URL, PORT} = require('./config')
 
 app.use(morgan('common'))
 app.use(express.static('public'))
+app.use(express.static('scripts/css'))
+app.use(express.static('scripts/js'))
+app.use(express.static('scripts'))
 
 app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/views/index.html')
 })
 
 app.listen(process.env.PORT || 8080)
+console.log('App is running.')
 
 // app.use('/admin', adminRouter)
 // app.use('/data', dataRouter)
