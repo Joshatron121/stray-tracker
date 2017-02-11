@@ -13,12 +13,18 @@
 
 	<div class="container">
 		<div class="valign-wrapper row">
-			<h1 class="valign center-align col s12">Hello World</h1>
+			<h1 class="valign center-align col s12">	
+			    <div id="locationField">
+			    	<input id="autocomplete" placeholder="Enter an address or zip code near where you saw the animal" onFocus="geolocate()" type="text"></input>
+			    </div>
+			</h1>
 		</div>
 	</div>
 
 	<script type="text/javascript" src="/jquery-3.1.1.min.js"></script>
 	<script type="text/javascript" src="/materialize.min.js"></script>
 	<script type="text/javascript" src="/app.js"></script>
+	<script type="text/javascript" src="/autocomplete.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAClkiqQwLaFuYdEidEOQssEDupP0706MQ&libraries=places&callback=initAutocomplete" async defer></script>
 </body>
 </html>
