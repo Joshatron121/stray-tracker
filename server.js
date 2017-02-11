@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const app = express()
 
-const dataRouter = require('./routes/dataRouter')
+const dataRouter = require('./routes/trackingDataRouter')
 const adminRouter = require('./routes/adminRouter')
 
 const {DATABASE_URL, PORT} = require('./config')
@@ -20,49 +20,46 @@ app.get('/', (req, res) => {
 	res.sendFile(__dirname + '/views/index.html')
 })
 
-app.listen(process.env.PORT || 8080)
-console.log('App is running.')
-
 // app.use('/admin', adminRouter)
-// app.use('/data', dataRouter)
+// app.use('/data', trackingDataRouter)
 
-// let server;
+let server;
 
-// function runServer(databaseUrl=DATABASE_URL, port=PORT) {
-//   return new Promise((resolve, reject) => {
-//     mongoose.connect(databaseUrl, err => {
-//       if (err) {
-//         return reject(err);
-//       }
+function runServer(databaseUrl=DATABASE_URL, port=PORT) {
+  return new Promise((resolve, reject) => {
+    // mongoose.connect(databaseUrl, err => {
+    //   if (err) {
+    //     return reject(err);
+    //   }
 
-//       app.listen(port, () => {
-//         console.log(`Your app is listening on port ${port}`);
-//         resolve();
-//       })
-//       .on('error', err => {
-//         mongoose.disconnect();
-//         reject(err);
-//       });
-//     });
-//   });
-// }
+      server = app.listen(port, () => {
+        console.log(`Your app is listening on port ${port}`);
+        resolve();
+      })
+      .on('error', err => {
+        // mongoose.disconnect();
+        reject(err);
+      });
+    });
+  // });
+}
 
-// function closeServer() {
-//   return mongoose.disconnect().then(() => {
-//      return new Promise((resolve, reject) => {
-//        console.log('Closing server');
-//        server.close(err => {
-//            if (err) {
-//                return reject(err);
-//            }
-//            resolve();
-//        });
-//      });
-//   });
-// }
+function closeServer() {
+  // return mongoose.disconnect().then(() => {
+     return new Promise((resolve, reject) => {
+       console.log('Closing server');
+       server.close(err => {
+           if (err) {
+               return reject(err);
+           }
+           resolve();
+       });
+     });
+  // });
+}
 
-// if(require.main === module) {
-// 	runServer().catch(err => console.error(err));
-// };
+if(require.main === module) {
+	runServer().catch(err => console.error(err));
+};
 
-// module.exports = {app, runServer, closeServer}
+module.exports = {app, runServer, closeServer}
