@@ -5,6 +5,7 @@
 	<meta name="description" content="A site to help track, find, and reconnect missing animals with their families.">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link rel="stylesheet" href="/font-awesome.min.css">
 	<link type="text/css" rel="stylesheet" href="/materialize.min.css" media="screen,projection">
 	<link type="text/css" rel="stylesheet" href="/style.css">
 	<title>Stray Tracker</title>
@@ -15,34 +16,200 @@
 			<div class="container">
 				<div class="nav-wrapper">
 					<a href="#" class="brand-logo left black-text">Stray Tracker</a>
+					<ul class="right hide-on-small-only">
+						<li class="active"><a class="black-text" href="#">Find an Animal</a></li>
+						<li><a class="black-text" href="#">Report a Sighting</a></li>
+					</ul>
 				</div>
 			</div>
 		</nav>
 	</div>
 	<div class="container">
 		<div class="section search-field">
-			<div class="row">
-				<div class="center-align col s12">
-				    <div id="locationField" class="col s9">
-				    	<input id="autocomplete" placeholder="Enter an address or zip code near where you saw the animal" onFocus="geolocate()" type="text"></input>
-				    </div>
-				    <div class="col s3">
-				    	<a class="waves-effect waves-light btn-large">Submit<i class="material-icons right">send</i></a>
-				    </div>
+			<div class="card-panel">
+				<div class="row">
+					<div class="col s12">
+					    <div id="locationField" class="col s9">
+					    	<input id="autocomplete" placeholder="Enter an address or zip code near where you saw the animal" onFocus="geolocate()" type="text"></input>
+					    </div>
+					    <div class="col s3">
+					    	<a class="waves-effect waves-light light-blue lighten-4 black-text btn">Submit<i class="material-icons black-text right">send</i></a>
+					    </div>
+					</div>
+				</div>
+				<div class="filters-field">
+					<div class="row">
+						<div class="primary-filters col s8 center">
+							<input id="name" placeholder="Animals Name"></input>
+						</div>
+						<div class="input-field primary-filters col s4 center">
+							<select>
+								<option value="" disabled selected>Animal Type</option>
+								<option value="dog">Dog</option>
+								<option value="cat">Cat</option>
+								<option value="other">Other</option>
+							</select>
+						</div>							
+					</div>
+					<div class="row">
+						<div class="input-field secondary-filters center col s4">
+							<select>
+								<option value="" disabled selected>Animal Color</option>
+								<option value="brown">Brown</option>
+								<option value="black">Black</option>
+								<option value="gray">Gray</option>
+								<option value="white">White</option>
+								<option value="blonde">Blonde</option>
+								<option value="spotted">Spotted</option>
+								<option value="other">Other</option>
+							</select>
+						</div>
+						<div class="input-field secondary-filters center col s4">
+							<select>
+								<option value="" disabled selected>Animal Gender</option>
+								<option value="male">Male</option>
+								<option value="female">Female</option>
+								<option value="false">Unknown</option>
+							</select>
+						</div>
+						<div class="input-field secondary-filters center col s4">
+							<select>
+								<option value="" disabled selected>Animal Size</option>
+								<option value="small">Small</option>
+								<option value="medium">Medium</option>
+								<option value="large">Large</option>
+							</select>
+						</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div class="section filters-field">
+			<div class="center-align">
+				<a class="btn-floating toggle-filters bottom-fab waves-effect waves-light light-blue lighten-4"><i class="material-icons black-text">keyboard_arrow_up</i></a>
+			</div>
 		</div>
 		<div class="section results-field">
 		</div>
 		<div class="section pagination-field">
+			
 		</div>
-
+		<div id="animal-detail" class="modal modal-fixed-footer">
+			<div class="modal-header right-align light-blue lighten-4">
+				<button class="modal-close btn-flat"><i class="material-icons">close</i></button>
+			</div>
+			<div class="modal-content">
+				<div class="row">
+					<div class="col s12">
+						<h2 class="center header">Black Dog</h2>
+						<div class="divider"></div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col s4">
+						<img class="left-align materialboxed" src="/images/dogPic.jpg">
+					</div>
+					<div class="col s8">
+						<table class="right-align highlight">
+							<thead>
+								<tr>
+									<th>Recent Sightings</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Sighting Location 1</td>
+									<td>14 Minutes Ago</td>
+								</tr>
+								<tr>
+									<td>Sighting Location 2</td>
+									<td>1 Day Ago</td>
+								</tr>
+								<tr>
+									<td>Sighting Location 3</td>
+									<td>5 Days Ago</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="divider"></div>
+				<div class="section">
+					<div class="row">
+						<div class="center col s4">
+							<div class="chip">Black</div>
+							<div class="chip">Dog</div>
+							<div class="chip">Uninjured</div>
+							<div class="chip">Medium</div>
+							<div class="chip">Male</div>
+						</div>
+						<div class="col s8">
+							<h4>Other Notes</h4>
+							<p class="flow-text">Attempted to contact dog, but she ran as I got close</p>
+						</div>
+					</div>
+					<div class="divider"></div>
+				</div>
+				<div class="row">
+					<div class="col s3">
+						<h5 class="left-align">Comments</h5>
+					</div>
+					<div class="offset-s5 col s4 right-align">
+						<a href="#" class="btn new-comment">New Comment</p></a>
+					</div>
+				</div>
+				<div class="row">
+					<div class="card">
+						<div class="card-content comment-info">
+							<div class="col s3">
+								<p class="left-align">User 1</p>
+							</div>
+							<div class="col s4 offset-s5">
+								<p class="right-align">Posted: 24 Minutes Ago</p>
+							</div>
+							
+						</div>
+						<div class="divider"></div>
+						<div class="card-content">
+							<div class="row">
+								<div class="col s12">
+									<p class="flow-text">This is a comment.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="card">
+						<div class="card-content comment-info">
+							<div class="col s3">
+								<p class="left-align">User 1</p>
+							</div>
+							<div class="col s4 offset-s5">
+								<p class="right-align">Posted: 24 Minutes Ago</p>
+							</div>
+							
+						</div>
+						<div class="divider"></div>
+						<div class="card-content">
+							<div class="row">
+								<div class="col s12">
+									<p class="flow-text">This is another comment.</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer right-align">
+				<a href="#!"><div class="chip"><i class="fa fa-facebook" aria-hidden="true"></i>&nbsp;&nbsp;share</div></a>
+				<a href="#!"><div class="chip"><i class="fa fa-twitter fa-lg"></i>&nbsp;&nbsp;share</div></a>
+				<a href="#!"><div class="chip"><i class="fa fa-envelope fa-lg"></i>&nbsp;&nbsp;share</div></a>
+				
+			</div>
+		</div>
 	</div>
 
 	<script type="text/javascript" src="/jquery-3.1.1.min.js"></script>
-	<script type="text/javascript" src="/materialize.min.js"></script>
+	<script type="text/javascript" src="/materialize.js"></script>
 	<script type="text/javascript" src="/app.js"></script>
 	<script type="text/javascript" src="/autocomplete.js"></script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAClkiqQwLaFuYdEidEOQssEDupP0706MQ&libraries=places&callback=initAutocomplete" async defer></script>

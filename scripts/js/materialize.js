@@ -946,6 +946,10 @@ if (jQuery) {
             });
           }
 
+          // if (options.closeIcon) {
+          // 	$modal.append('<div style="position:fixed;top:0;background-color:white;width:100%;height:35px"><button class="modal-close btn-flat" style="position:absolute;top:0;right:0">X</button></div>');
+          // }
+
           $modal.find(".modal-close").on('click.close', function(e) {
             closeModal();
           });

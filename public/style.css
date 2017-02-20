@@ -2,14 +2,73 @@ img {
 	width: 100%
 }
 
-.btn {
-	width: 100%
+.modal-content {
+	margin-top: 35px
 }
 
-.card-content {
-	height: 100%
+.modal-header {
+	position: fixed;
+	top: 0;
+	background-color: white;
+	width: 100%;
+	height: 35px;
+	
 }
+
+.btn {
+	margin-top: 5px
+}
+
+.modal-footer .chip {
+	margin-top: 6px
+}
+
+.comment-info {
+	margin-bottom: 20px;
+}
+
+.toggle-filters {
+	margin-top: -50px
+}
+
+.secondary-filters {
+	margin-top: -30px
+}
+
+.primary-filters {
+	margin-top: -5px
+}
+
+.card-content > p {
+	padding-top: 10px;
+}
+
+.results-field {
+	margin-top: -30px
+}
+
+.pagination-field {
+	margin-top: -40px
+}
+
+.last-location {
+	padding-bottom: 10px
+}
+
 
 .card-content p {
 	font-size: 100%
+}
+
+.filters-field {
+	width: 100%
+}
+
+.filters-field {
+	margin-top: -50px;
+	margin-bottom: -70px
+}
+
+.search-field > .card-panel {
+	height: 215px
 }

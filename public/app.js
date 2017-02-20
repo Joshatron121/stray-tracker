@@ -14,17 +14,18 @@ $(function(){
 
 	function buildTemplate(data) {
 		var title = (data.name || (data.features.color || '') + ' ' + data.features.type);
-		var features = ((data.features.color && data.features.color + ' ') || '') + data.features.type.toLowerCase() + ' sighted near ' + (data.location.block || '') + (data.location.streetName) + ' ' + (data.location.zip)
+		var features = ((data.features.color && data.features.color + ' ') || '') + data.features.type.toLowerCase() + ' sighting. Last seen near ' + ((data.location.block && 'the ' + data.location.block ) || '') + (data.location.streetName) + ' ' + (data.location.zip)
 		return '<div class="result-' + data.id + '">' +
-				'<div class="col s4">' +
-					'<div class="card medium hoverable">' +
-						'<div class="card-image">' +
-							'<img class="materialboxed" data-caption="' + features + '" src="/images/dogPic.jpg">' +
+				'<div class="col s12 m4 l4">' +
+					'<a href="#animal-detail" class="modal-close"><div class="card hoverable">' +
+						'<div class="hide-on-small-only card-image">' +
+							'<img src="/images/dogPic.jpg">' +
 						'</div>' +
 						'<div class="result-1 card-content">' +
-							'<span class="card-title animal-information">' + title.toUpperCase() + '</span>' +
-							'<p class="last-location">' + features +'</p>' +
-						'</div></div></div></div>'
+							'<span class="card-title animal-information black-text">' + title.toUpperCase() + '</span><div class="divider"></div>' +
+							'<p class="last-location flow-text black-text">' + features +'</p>' +
+							'<div class="divider"></div><p class="black-text">Click for More</p>' +
+						'</div></div></a></div></div>'
 	}
 
 	function getAnimalData(callbackFn) {
@@ -34,17 +35,41 @@ $(function(){
 	function addOrAppendResults(path, data) {
 		if(path) {
 			$('.results-field').append(data + '</div>')
-			$('.materialboxed').materialbox()
 		} else {
 			var resultTemplate = buildTemplate(data)
 			return resultTemplate
 		}
 	}
 
+	function buildPagination(dataLength, currentPage){
+		totalPages = Math.ceil(dataLength / 9)
+		paginationUl = '<div class="row"><div class="col s12 center"><ul class="pagination">'
+		if(currentPage === 1) {
+			paginationUl += '<li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>'
+		} else {
+			paginationUl += '<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_left</i></a></li>'
+		}
+		for(var page = 1; page <= totalPages; page++) {
+			if(page === currentPage) {
+				paginationUl += '<li class="active"><a href="#!">' + page + '</a></li>'
+			} else {
+				paginationUl += '<li class="waves-effect"><a href="#!">' + page + '</a></li>'
+			}
+		}
+		if(currentPage === totalPages) {
+			paginationUl += '<li class="disabled"><a href="#!"><i class="material-icons">chevron_right</i></a></li></ul></div></div>'
+		} else {
+			paginationUl += '<li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li></ul></div></div>'
+		}
+		
+		$('.pagination-field').append(paginationUl)
+	}
+
 	function displayAnimalData(data) {
 		var i = 0
 		var results = '<div class="row">'
-		for (index in data.trackingData){
+		var currentPage = 1;
+		for (var index = 0; index < 6; index++){
 			console.log(i, index)
 			var animal = data.trackingData[index]
 			if(i === 3) {
@@ -59,6 +84,7 @@ $(function(){
 			}
 		}
 		addOrAppendResults(true, results)
+		buildPagination(data.trackingData.length, currentPage)
 	}
 
 	function getAndDisplayAnimalData() {
@@ -66,5 +92,21 @@ $(function(){
 	}
 	
 	getAndDisplayAnimalData()
+
+	$('.toggle-filters').click(function(){
+		if($('.toggle-filters > i').text() === 'keyboard_arrow_up'){
+			$('.filters-field').slideToggle(600);
+			$('.search-field > .card-panel').animate({height: "100px"}, 600);
+			$('.toggle-filters > i').text('keyboard_arrow_down')
+		} else {
+			$('.filters-field').slideToggle(600);
+			$('.search-field > .card-panel').animate({height: "215px"}, 600);
+			$('.toggle-filters > i').text('keyboard_arrow_up')
+		}
+	})
+
+	$('select').material_select();
+	$('.modal').modal()
+	$('.materialboxed').materialbox();
 
 })
